@@ -1,0 +1,17 @@
+services:
+  server:
+    build: 
+      context: .
+      args:
+        - URL=${URL}
+        - AUTH_TOKEN=${AUTH_TOKEN}
+        - PORT=${PORT}
+    env_file:
+      - .env
+    environment:
+      - URL=${URL}
+      - AUTH_TOKEN=${AUTH_TOKEN}
+      - PORT=${PORT}
+    ports:
+      - "11434:11434"
+      - "4040:4040"
