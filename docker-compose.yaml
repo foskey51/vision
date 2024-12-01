@@ -12,6 +12,3 @@ services:
       - URL=${URL}
       - AUTH_TOKEN=${AUTH_TOKEN}
       - PORT=${PORT}
-    ports:
-      - "11434:11434"
-      - "4040:4040"

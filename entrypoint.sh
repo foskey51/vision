@@ -1,4 +1,16 @@
 #!/bin/bash
-ollama serve & \
-sleep 5 &&\
-ngrok http --url=$URL $PORT &
+
+# Start ollama service directly
+ollama serve &
+
+# Wait for Ollama to initialize
+sleep 5
+
+# Start ngrok
+ngrok http --url=$URL $PORT --host-header="localhost:11434" &
+
+# Keep the container running
+tail -f /dev/null
+
+
+

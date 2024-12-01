@@ -41,9 +41,6 @@ RUN ollama serve & \
 # Begin a proxy connnection
 RUN  ngrok config add-authtoken $AUTH_TOKEN
 
-# Expose port 11434 for Ollama
-EXPOSE 11434 4040
-
 # Copy file with permission
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh

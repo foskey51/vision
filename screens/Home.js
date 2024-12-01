@@ -10,11 +10,12 @@ import SpeechToText from "../components/SpeechToText";
 import * as Speech from 'expo-speech';
 import { SafeAreaView } from "react-native-safe-area-context";
 import SkeletonLoader from "../components/SkeletonLoader";
+import MessageView from "../components/MessageView";
 
 const Home = () => {
 
     const store = useStore.getState();
-    const [facing, setFacing] = useState("back");
+    const [facing, setFacing] = useState("back"); 
     const [image, setImage] = useState(null);
     const [cameraPermission, setCameraPermission] = useCameraPermissions();
     const [micPermission, setMicPermission] = useMicrophonePermissions();
@@ -127,23 +128,8 @@ const Home = () => {
         }
     }
 
-
-
     const RenderItem = memo(({ item, loading }) => {
-        return item.type === 'user' ?
-            (
-                <View>
-                    <Text>{item.text}</Text>
-                </View>
-            ) : !loading ? (
-                <View>
-                    <Text>{item.text}</Text>
-                </View>
-            ) : (
-                <View>
-                    <SkeletonLoader />
-                </View>
-            );
+        return MessageView(item, loading);
     });
 
     return (
@@ -164,6 +150,8 @@ const Home = () => {
                 <View style={styles.prevContainer}>
                     <Image source={{ uri: image }} style={styles.prevImg} />
                     <FlatList
+                        showsHorizontalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}
                         data={msgData}
                         style={styles.prevContent}
                         keyExtractor={(item, index) => index.toString()}
@@ -214,7 +202,7 @@ const styles = StyleSheet.create({
     },
     prevContent: {
         height: 200,
-    }
+    },
 });
 
 export default Home;

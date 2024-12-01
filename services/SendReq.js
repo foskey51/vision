@@ -75,7 +75,7 @@ export const sendReq = async (base64Image, prompt, updateLastAssistantMessage, m
 
         // JSON payload for the POST request
         const requestData = JSON.stringify({
-            "model": "llava",
+            "model": "llava:7b",
             "prompt": prompt,
             "images": [
                 base64Image
