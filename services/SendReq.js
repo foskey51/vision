@@ -1,6 +1,7 @@
 import { ToastAndroid } from "react-native";
 import useStore from "../store";
 import * as Speech from 'expo-speech';
+import { TextToSpeech } from "../components/TextToSpeech";
 
 
 export const sendReq = async (base64Image, prompt, updateLastAssistantMessage, msgData) => {
@@ -46,8 +47,7 @@ export const sendReq = async (base64Image, prompt, updateLastAssistantMessage, m
                         }
 
                         if (json.done) {
-                            Speech.stop();
-                            Speech.speak('Response generated, long press to hear the message');
+                            TextToSpeech('Response generated, tap to hear the message');
                         }
 
                     } catch (error) {
@@ -63,6 +63,7 @@ export const sendReq = async (base64Image, prompt, updateLastAssistantMessage, m
             } else {
                 console.error('Request failed with status:', xhr.status);
                 ToastAndroid.show('Request failed', ToastAndroid.LONG);
+                TextToSpeech('Error, please try again');
                 setLoading(false);
                 return;
             }
@@ -87,6 +88,7 @@ export const sendReq = async (base64Image, prompt, updateLastAssistantMessage, m
     } catch (error) {
         console.log(error);
         ToastAndroid.CENTER(error);
+        TextToSpeech('Error occured, try again')
         setLoading(false);
     };
 };

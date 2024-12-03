@@ -1,8 +1,22 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import SkeletonLoader from "./SkeletonLoader";
+import * as Speech from 'expo-speech';
+import { useMessageContext } from "../context/MessageContext";
 
 const MessageView = (item, loading) => {
+
+    const { msgData } = useMessageContext();
+
+    const speakBotMsg = () => {
+        Speech.stop();
+        const text = msgData[1].text;
+
+        Speech.speak(text, {
+            language: 'en-IN',
+            rate: 0.8,
+        });
+    };
 
     return item.type === 'user' ? (
         <View
@@ -35,15 +49,17 @@ const MessageView = (item, loading) => {
                 marginRight: 5,
             }}
         >
-            <Text
-                style={{
-                    color:'black',
-                    textAlign: 'justify',
-                    lineHeight: 20,
-                }}
-            >
-                {item.text}
-            </Text>
+            <TouchableOpacity onPress={speakBotMsg} >
+                <Text
+                    style={{
+                        color: 'black',
+                        textAlign: 'justify',
+                        lineHeight: 20,
+                    }}
+                >
+                    {item.text}
+                </Text>
+            </TouchableOpacity>
         </View>
     ) : (
         <View>

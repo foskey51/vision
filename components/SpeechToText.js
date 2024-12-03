@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         padding: 0,
+        backgroundColor:'white',
     },
     row: {
         flexDirection: 'row',
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
         minWidth: '90%',
         maxWidth: '90%',
         flexWrap: 'wrap',
+        backgroundColor: 'white',
     },
     touch: {
         padding: 0,

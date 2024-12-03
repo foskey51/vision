@@ -13,7 +13,6 @@ export const MessageProvider = ({ children }) => {
     ]);
   };
 
-
   const updateLastAssistantMessage = (content) => {
     setMsgData((prevMessages) => {
       const lastBotIndex = prevMessages
