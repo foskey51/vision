@@ -1,14 +1,17 @@
+version: '3.8'
+
 services:
   server:
     build: 
       context: .
       args:
-        - URL=${URL}
-        - AUTH_TOKEN=${AUTH_TOKEN}
-        - PORT=${PORT}
+        URL: ${URL}
+        AUTH_TOKEN: ${AUTH_TOKEN}
+        PORT: ${PORT}
     env_file:
       - .env
     environment:
-      - URL=${URL}
-      - AUTH_TOKEN=${AUTH_TOKEN}
-      - PORT=${PORT}
+      URL: ${URL}
+      AUTH_TOKEN: ${AUTH_TOKEN}
+      PORT: ${PORT}
+    runtime: nvidia
